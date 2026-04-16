@@ -1,5 +1,3 @@
-# Add all dev deployments here
-
 project_id = "marcuslewis-gke"
 region = "europe-west3"
 location = "europe-west-3a"
