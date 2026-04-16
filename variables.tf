@@ -50,3 +50,27 @@ variable "services_cidr" {
   type        = string
   default     = "10.30.0.0/20"
 }
+
+variable "cluster_name" {
+  description = "Name of the GKE cluster"
+  type        = string
+  default     = "basic-gke"
+}
+
+variable "location" {
+  description = "Region or Zone"
+  type        = string
+  default     = "europe-west-3a"
+}
+
+variable "node_count" {
+  description = "Count of VMs in GKE"
+  type        = number
+  default     = 1
+}
+
+variable "machine_type" {
+  description = "type of machine e.g. n2-standard-2"
+  type        = string
+  default     = "e2-micro"
+}
