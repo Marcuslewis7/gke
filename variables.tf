@@ -27,7 +27,7 @@ variable "subnet_cidr" {
   default     = "10.10.0.0/20"
 }
 
-variable "pods_name" {
+variable "pods_range_name" {
   description = "Name of the pods"
   type        = string
   default     = "gke-pods"
@@ -39,7 +39,7 @@ variable "pods_cidr" {
   default     = "10.20.0.0/16"
 }
 
-variable "services_name" {
+variable "services_range_name" {
   description = "Name of services in GKE"
   type        = string
   default     = "gke-services"
