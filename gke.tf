@@ -41,11 +41,11 @@ resource "google_container_node_pool" "primary_nodes" {
       enable_secure_boot          = true
       enable_integrity_monitoring = true
     }
-
-    management {
-      auto_repair  = true
-      auto_upgrade = true
-    }
+  }
+  
+  management {
+    auto_repair  = true
+    auto_upgrade = true
   }
 
 }
