@@ -1,31 +1,20 @@
 name: Terraform Destroy
 
 on:
-  workflow_dispatch:
-    description: "Terraform environment"
-    required: true
-    default: "dev"
-    type: choice
-    options:
-      - dev
-    confirm_destroy:
-      description: 'Type "DESTROY" to confirm'
-      required: true
-      default: ""
-      type: string
-
+  workflow_dispatch: {}
+  
 permissions:
   contents: read
   id-token: write
 
 concurrency:
-  group: terraform-destroy-${{ github.ref }}-${{ inputs.environment }}
+  group: terraform-destroy-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   destroy:
-    if: ${{ inputs.confirm_destroy == 'DESTROY' }}
     runs-on: ubuntu-latest
+    
     defaults:
       run:
         shell: bash
