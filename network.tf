@@ -1,7 +1,7 @@
 resource "google_compute_network" "gke" {
   name                    = var.network_name
   auto_create_subnetworks = false
-  routing                 = "REGIONAL"
+  routing_mode            = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "gke" {
