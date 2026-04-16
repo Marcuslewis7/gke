@@ -7,6 +7,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "tfstate-marcuslewis-gke-dev"
+    prefix = "gke/dev"
+  }
 }
 
 provider "google" {
