@@ -46,7 +46,6 @@ jobs:
 
   terraform-apply:
     if: github.ref == 'refs/heads/main'
-    needs: terraform-plan
     runs-on: ubuntu-latest
     environment: production
 
