@@ -63,3 +63,8 @@ output "generate_kubectl_config" {
   value       = "gcloud container clusters get-credentials ${google_container_cluster.primary.name} --region ${var.region} --project ${var.project_id}"
   description = "Command to configure kubectl access to the cluster"
 }
+
+output "nginx_service_url" {
+  value       = "http://${kubernetes_service.nginx.status[0].load_balancer[0].ingress[0].ip}"
+  description = "URL to access NGINX service"
+}
