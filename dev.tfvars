@@ -1,6 +1,6 @@
 project_id = "marcuslewis-gke"
 region = "europe-west3"
-location = "europe-west-3a"
+location = "europe-west3-a"
 
 network_name = "gke-vpc"
 subnet_name  = "gke-subnet"
