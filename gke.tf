@@ -18,6 +18,10 @@ resource "google_container_cluster" "primary" {
   release_channel {
     channel = "REGULAR"
   }
+
+  depends_on = [
+    google_project_service.required_apis
+  ]
 }
 
 resource "google_container_node_pool" "primary_nodes" {
