@@ -29,6 +29,7 @@ resource "kubernetes_cluster_role" "default" {
     api_groups = [""]
     resources  = ["pods", "pods/logs"]
     verbs      = ["get", "list", "watch"]
+  }
 
   rule {
     api_groups = [""]
