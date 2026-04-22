@@ -42,7 +42,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -var-file=dev.tfvars
+        run: terraform plan -lock=false -var-file=dev.tfvars
 
 
   terraform-apply:
