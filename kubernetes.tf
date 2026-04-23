@@ -1,28 +1,28 @@
 # Namespace
-resource "kubernetes_namespace" "default" {
+resource "kubernetes_namespace" "nginx" {
   metadata {
-    name = "default"
+    name = "nginx"
     labels = {
-      name = "default"
+      name = "nginx"
     }
   }
 
   depends_on = [google_container_node_pool.primary_nodes]
 }
 
-resource "kubernetes_service_account" "default" {
+resource "kubernetes_service_account" "nginx" {
   metadata {
-    name = "default-sa"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    name = "nginx-sa"
+    namespace = kubernetes_namespace.nginx.metadata[0].name
     labels = {
-      app = "default"
+      app = "nginx"
     }
   }
 }
 
-resource "kubernetes_cluster_role" "default" {
+resource "kubernetes_cluster_role" "nginx" {
   metadata {
-    name = "default-cluster-role"
+    name = "nginx-cluster-role"
   }
 
   rule {
@@ -44,28 +44,28 @@ resource "kubernetes_cluster_role" "default" {
   }
 }
 
-resource "kubernetes_cluster_role_binding" "default" {
+resource "kubernetes_cluster_role_binding" "nginx" {
   metadata {
-    name = "default-cluster-role-binding"
+    name = "nginx-cluster-role-binding"
   }
 
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "ClusterRole"
-    name      = kubernetes_cluster_role.default.metadata[0].name
+    name      = kubernetes_cluster_role.nginx.metadata[0].name
   }
 
   subject {
     kind      = "ServiceAccount"
-    name      = kubernetes_service_account.default.metadata[0].name
-    namespace = kubernetes_namespace.default.metadata[0].name
+    name      = kubernetes_service_account.nginx.metadata[0].name
+    namespace = kubernetes_namespace.nginx.metadata[0].name
   }
 }
 
 resource "kubernetes_deployment" "nginx" {
   metadata {
     name      = "nginx-deployment"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    namespace = kubernetes_namespace.nginx.metadata[0].name
     labels = {
       app = "nginx"
     }
@@ -88,7 +88,7 @@ resource "kubernetes_deployment" "nginx" {
       }
 
       spec {
-        service_account_name = kubernetes_service_account.default.metadata[0].name
+        service_account_name = kubernetes_service_account.nginx.metadata[0].name
 
         container {
           name  = "nginx"
@@ -139,7 +139,7 @@ resource "kubernetes_deployment" "nginx" {
 resource "kubernetes_service" "nginx" {
   metadata {
     name      = "nginx-service"
-    namespace = kubernetes_namespace.default.metadata[0].name
+    namespace = kubernetes_namespace.nginx.metadata[0].name
     labels = {
       app = "nginx"
     }
