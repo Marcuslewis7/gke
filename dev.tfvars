@@ -12,4 +12,4 @@ services_cidr = "10.30.0.0/20"
 
 cluster_name = "basic-gke-dev"
 node_count   = 1
-machine_type = "e2-micro"
+machine_type = "e2-medium"
