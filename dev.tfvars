@@ -11,5 +11,5 @@ services_range_name = "gke-services"
 services_cidr = "10.30.0.0/20"
 
 cluster_name = "basic-gke-dev"
-node_count   = 1
+node_count   = 2
 machine_type = "e2-medium"
